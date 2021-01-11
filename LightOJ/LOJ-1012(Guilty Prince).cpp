@@ -8,6 +8,9 @@ typedef long long ll;
 int ans, x, y;
 vector < string > grid(101);
 int vis[101][101];
+int dx[] = {-1, 0, 0, 1};
+int dy[] = {0, -1, 1, 0};
+
 bool ispossible(int p, int q){
     if(p >= 0 && p < y && q >= 0 && q < x && vis[p][q] == 0 && grid[p][q] == '.')
         return 1;
@@ -16,21 +19,11 @@ bool ispossible(int p, int q){
 
 void DFS(int p, int q){
     vis[p][q] = 1;
-    if(ispossible(p-1,q)){
-        ans++;
-        DFS(p-1,q);
-    }
-    if(ispossible(p,q-1)){
-        ans++;
-        DFS(p,q-1);
-    }
-    if(ispossible(p,q+1)){
-        ans++;
-        DFS(p,q+1);
-    }
-    if(ispossible(p+1,q)){
-        ans++;
-        DFS(p+1,q);
+    for(int i = 0;i < 4;i++){
+        if(ispossible(p+dx[i], q+dy[i])){
+            ans++;
+            DFS(p+dx[i], q+dy[i]);
+        }
     }
 }
 
@@ -58,7 +51,6 @@ int main(){
         ans = 0;
         DFS(p,q);
         cout << ans+1 << en;
-
     }
     return 0;
 }
