@@ -7,7 +7,6 @@ typedef long long ll;
 #define F      first
 #define S      second
 bool flag[10005];
-vector < ll > primes;
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);cout.tie(NULL);
