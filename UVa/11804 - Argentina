@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+#define F          first
+#define S          second
+#define PB         push_back
+#define sz(x)      (int)x.size()
+#define en         '\n'
+#define sp         ' '
+
+void solve(){
+    vector < tuple < ll, ll, string > > info(10);
+    ll x, y;
+    string name;
+    for(int i = 0;i < 10;i++){
+        cin >> name >> x >> y;
+        info[i] = make_tuple(x, 100-y, name);
+    }
+    for(int i = 0;i < 10;i++){
+        for(int j = i;j < 10;j++){
+            if(get<0>(info[i]) > get<0>(info[j]))
+                swap(info[i], info[j]);
+            else if(get<0>(info[i]) == get<0>(info[j]) && get<1>(info[i]) > get<1>(info[j]))
+                swap(info[i], info[j]);
+            else if(get<0>(info[i]) == get<0>(info[j]) && get<1>(info[i]) == get<1>(info[j]) && get<2>(info[i]) < get<2>(info[j]))
+                swap(info[i], info[j]);
+        }
+    }
+    vector < string > ans(5);
+    for(int i = 5;i < 10;i++)
+        ans[i-5] = get<2>(info[i]);
+    sort(ans.begin(), ans.end());
+    cout << "(";
+    for(int i = 0;i < 5;i++){
+        cout << ans[i];
+        if(i < 4)cout << ", ";
+    }
+    cout << ")";
+    cout << en;
+    cout << "(";
+    for(int i = 0;i < 5;i++)
+        ans[i] = get<2>(info[i]);
+    sort(ans.begin(), ans.end());
+    for(int i = 0;i < 5;i++){
+        cout << ans[i];
+        if(i < 4)cout << ", ";
+    }
+    cout << ")";
+    cout << en;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);cout.tie(NULL);
+    ll tc = 1;
+    cin >> tc;
+    for(ll pp = 1;pp <= tc;pp++){
+        cout << "Case "<< pp <<":\n";
+        solve();
+    }
+    return 0;
+}
