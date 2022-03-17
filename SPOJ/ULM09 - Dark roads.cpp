@@ -19,7 +19,7 @@ void Union(int x, int y){
         if(sz[a] < sz[b])
             swap(a, b);
         parent[b] = a;
-        sz[b] += sz[a];
+        sz[a] += sz[b];
     }
 }
 void solve(ll n, ll m){
